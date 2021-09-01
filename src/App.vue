@@ -1,17 +1,47 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div id="app">
+    <Quiz @quizInProcess="submitQuiz" :key="quizKey"/>
   </div>
-  <router-view/>
 </template>
+
+<script>
+import Quiz from './components/Quiz.vue'
+export default {
+  components: {
+    Quiz
+  },
+  data() {
+    return {
+      quizKey: 0,
+      quizScore: {
+        allQuestions: 0,
+        answeredQuestions: 0,
+        correctlyAnsweredQuestions: 0,
+      },
+    }
+  },
+  methods: {
+    submitQuiz(button) {
+      const formData = {
+        answers: button
+      }
+      fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
+        }
+      }).then(console.log('ok'))
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 
