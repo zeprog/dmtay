@@ -1,5 +1,9 @@
 # dmtay
 
+## Site link
+
+To go to the site, [click](https://zeprog.github.io/dmtay/)
+
 ## Project setup
 ```
 npm install
